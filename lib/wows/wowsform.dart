@@ -66,7 +66,7 @@ class _WowsFormState extends State<WowsForm> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Hero(
-                          tag: 'dash',
+                          tag: 'drop',
                           child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),

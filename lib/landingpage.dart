@@ -79,10 +79,13 @@ class _LandingPageState extends State<LandingPage> {
                             child: const WarCard()),
                         ),
                         const SizedBox(width: 20,),
-                        Card(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                          color: Colors.transparent,
-                          child: const WowsCard())
+                        Hero(
+                          tag: 'drop',
+                          child: Card(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                            color: Colors.transparent,
+                            child: const WowsCard()),
+                        )
                       ],
                     ),
                     const SizedBox(height: 20,)

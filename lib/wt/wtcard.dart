@@ -29,6 +29,7 @@ class _WarCardState extends State<WarCard> {
             backgroundImage: AssetImage("assets/images/Logo_tKRI.png"),
           ),
           ElevatedButton(
+            
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 50),
                   shape: RoundedRectangleBorder(

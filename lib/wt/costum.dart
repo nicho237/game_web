@@ -47,7 +47,8 @@ class CheckRules extends StatefulWidget {
 }
 
 class _CheckRulesState extends State<CheckRules> {
-  bool isChecked = false;
+ 
+  bool _value = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,13 +57,13 @@ class _CheckRulesState extends State<CheckRules> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Checkbox(
-              value: isChecked,
-              onChanged: (bool? value) {
-                // This is where we update the state when the checkbox is tapped
+              value: _value,
+             onChanged: (value) {
                 setState(() {
-                  isChecked = value!;
+                  _value = value!;
                 });
-              }),
+              },
+              ),
           const Expanded(
               child: Text(
             'Saya Sudah Membaca Rules',

@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
 import 'package:game_web/wt/costum.dart';

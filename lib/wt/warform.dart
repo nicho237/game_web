@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
-import 'package:game_web/wt/costum.dart';
 import 'package:game_web/wt/wtcardrule.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -123,7 +122,6 @@ class _FormWidgetState extends State<FormWidget> {
   final TextEditingController _user = TextEditingController();
   bool _isruleschecked = false;
   bool _issbchecked = false;
-  bool _validate = false;
 
   String result = '';
   String clear = '';

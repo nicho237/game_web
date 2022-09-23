@@ -34,10 +34,27 @@ class _WowsCardState extends State<WowsCard> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
               onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/WoWSJoin',
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    actionsPadding: const 
+                    EdgeInsets.all(15),
+                    title: const Text("Tidak ada Rekrutmen"),
+                    content: const Text("ODIN sedang tidak membuka rekrutmen"),
+                    actions: [
+                      TextButton(
+                          onPressed: (() {
+                            Navigator.of(context, rootNavigator: true).pop();
+                          }),
+                          child: const Text("Kembali"))
+                    ],
+                  ),
                 );
+
+                
+                
               },
               child: const Text('World Of Warships')),
         ],

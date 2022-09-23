@@ -71,14 +71,14 @@ class _WowsFormState extends State<WowsForm> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               color: Colors.transparent,
-                              child: WowsCardRule()),
+                              child: const WowsCardRule()),
                         ),
                         Expanded(
                             child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           color: Colors.transparent,
-                          child: Container(
+                          child: const SizedBox(
                               width: 300,
                               child:
                                   Center(child: Text('Rules [On Progress]'))),
@@ -90,7 +90,7 @@ class _WowsFormState extends State<WowsForm> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       color: Colors.transparent,
-                      child: Container(
+                      child: const SizedBox(
                           width: 300,
                           child: Center(child: Text('Form [On Progress]'))),
                     ))

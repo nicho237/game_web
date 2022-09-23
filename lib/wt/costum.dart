@@ -12,7 +12,7 @@ class _CheckEulaState extends State<CheckEula> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 334),
+      constraints: const BoxConstraints(maxWidth: 334),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -24,12 +24,12 @@ class _CheckEulaState extends State<CheckEula> {
                   isChecked = value!;
                 });
               }),
-          Expanded(
+          const Expanded(
               child: Text(
             'Saya Siap Mengikuti Squadron Realistic Battle',
             style: TextStyle(fontSize: 11),
           )),
-          SizedBox(width: 20,),
+          const SizedBox(width: 20,),
 
 
         ],
@@ -51,7 +51,7 @@ class _CheckRulesState extends State<CheckRules> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 334),
+      constraints: const BoxConstraints(maxWidth: 334),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -63,12 +63,12 @@ class _CheckRulesState extends State<CheckRules> {
                   isChecked = value!;
                 });
               }),
-          Expanded(
+          const Expanded(
               child: Text(
             'Saya Sudah Membaca Rules',
             style: TextStyle(fontSize: 11),
           )),
-          SizedBox(width: 20,),
+          const SizedBox(width: 20,),
 
 
         ],

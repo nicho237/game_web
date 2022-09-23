@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_web/wows/wowscard.dart';
 
-
-
 import 'wt/wtcard.dart';
 
 class LandingPage extends StatefulWidget {
@@ -67,28 +65,36 @@ class _LandingPageState extends State<LandingPage> {
                         style: TextStyle(fontSize: 40, color: Colors.white),
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:  [
+                      children: [
                         Hero(
                           tag: 'dash',
                           child: Card(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                            color: Colors.transparent,
-                            child: const WarCard()),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40)),
+                              color: Colors.transparent,
+                              child: const WarCard()),
                         ),
-                        const SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Hero(
                           tag: 'drop',
                           child: Card(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                            color: Colors.transparent,
-                            child: const WowsCard()),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40)),
+                              color: Colors.transparent,
+                              child: const WowsCard()),
                         )
                       ],
                     ),
-                    const SizedBox(height: 20,)
+                    const SizedBox(
+                      height: 20,
+                    )
                   ],
                 ),
               ),

@@ -14,30 +14,37 @@ class _WarCardRuleState extends State<WarCardRule> {
     return Container(
       color: Colors.transparent,
       height: 150,
-      width: 300,
-      child: Column(
+      width: 400,
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Material(
-            color: Colors.transparent,
-            child: Text(
-              '[TKRI]',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
           const CircleAvatar(
-            radius: 30,
+            radius: 65,
             backgroundImage: AssetImage("assets/images/Logo_tKRI.png"),
           ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(100, 25),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const LandingPage()));
-              },
-              child: const Text('Back')),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Material(
+                color: Colors.transparent,
+                child: Text(
+                  '[TKRI]',
+                  style: TextStyle(fontSize: 30,
+                    color: Colors.white),
+                ),
+              ),
+              
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(100, 25),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const LandingPage()));
+                  },
+                  child: const Text('Back')),
+            ],
+          ),
         ],
       ),
     );

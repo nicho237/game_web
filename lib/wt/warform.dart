@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
+import 'package:game_web/wt/costum.dart';
 import 'package:game_web/wt/wtcardrule.dart';
 
 class WarForm extends StatefulWidget {
@@ -42,7 +43,7 @@ class _WarFormState extends State<WarForm> {
         Center(
           child: SingleChildScrollView(
             child: Container(
-              width: 700,
+              width: 800,
               height: 500,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 6, 80, 139),
@@ -60,37 +61,41 @@ class _WarFormState extends State<WarForm> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Hero(
-                          tag: 'dash',
-                          child: Card(
+                    Expanded(
+                      child: Column(children: [
+                        Expanded(
+                          child: Hero(
+                            tag: 'dash',
+                            child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                color: Colors.transparent,
+                                child: WarCardRule()),
+                          ),
+                        ),
+                        Expanded(
+                            flex: 2,
+                            child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               color: Colors.transparent,
-                              child: WarCardRule()),
-                        ),
-                        Expanded(
-                            child: Card(
-                              
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                              color: Colors.transparent,
-                          child: Container(
-                            width: 300 ,
-                            child: Center(child: Text('Rules [On Progress]'))),
-                        ))
-                      ],
+                              child: Container(
+                                  
+                                  child: Center(
+                                      child: Text('Rules [On Progress]'))),
+                            )),
+                      ]),
                     ),
                     Expanded(
-                            child: Card(
-                              
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                              color: Colors.transparent,
-                          child: Container(
-                            width: 300 ,
-                            child: Center(child: Text('Form [On Progress]'))),
+                        flex: 1,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          color: Colors.transparent,
+                          child: SizedBox(
+                               child: Center(child: FormWidget())),
                         ))
                   ],
                 ),
@@ -99,6 +104,105 @@ class _WarFormState extends State<WarForm> {
           ),
         )
       ],
+    );
+  }
+}
+
+class FormWidget extends StatefulWidget {
+  const FormWidget({super.key});
+
+  @override
+  State<FormWidget> createState() => _FormWidgetState();
+}
+
+class _FormWidgetState extends State<FormWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+      child: Container(
+        width: 250,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Center(
+              child: Text(
+                'Formulir Pendaftaran',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ),
+            SizedBox(height: 20,),
+            TextField(
+              textCapitalization: TextCapitalization.words,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+               label: Text('Nama Panggilan'),
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              style: const TextStyle(fontSize: 12, color: Colors.white),
+              textAlignVertical: TextAlignVertical.bottom,
+              
+            ),
+            TextField(
+              
+              decoration: InputDecoration(
+                label: Text('WT nickname'),
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                 
+                ),
+              ),
+              style: const TextStyle(fontSize: 12, color: Colors.white),
+              textAlignVertical: TextAlignVertical.bottom,
+            ),
+            TextField(
+              textCapitalization: TextCapitalization.words,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+               label: Text('Negara Utama'),
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              style: const TextStyle(fontSize: 12,  color: Colors.white),
+              textAlignVertical: TextAlignVertical.bottom,
+            ),
+             TextField(
+              textCapitalization: TextCapitalization.words,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+               label: Text('Discord'),
+               hintText: 'Nicama#9958' ,
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              style: const TextStyle(fontSize: 12, color: Colors.white),
+              textAlignVertical: TextAlignVertical.bottom,
+            ),
+
+            SizedBox(height: 40,),
+            CheckEula(),
+            CheckRules(),
+
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                onPressed: () {
+                
+                },
+                child: const Text('Kirim')),
+          ],
+        ),
+      ),
     );
   }
 }

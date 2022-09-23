@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       },
       title: 'Web',
       theme: ThemeData(
+        primaryTextTheme: Typography().white,
         textTheme: GoogleFonts.merriweatherTextTheme(),
         primarySwatch: Colors.blueGrey,
       ),

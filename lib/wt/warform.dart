@@ -67,6 +67,7 @@ class _WarFormState extends State<WarForm> {
                     Expanded(
                       child: Column(children: [
                         Expanded(
+                          flex: 2,
                           child: Hero(
                             tag: 'dash',
                             child: Card(
@@ -77,13 +78,37 @@ class _WarFormState extends State<WarForm> {
                           ),
                         ),
                         Expanded(
-                            flex: 2,
+                          flex: 1,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            color: Colors.transparent,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: const [
+                                  Text(
+                                    'Rules',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 28),
+                                  ),
+                                  Text(
+                                    'Harap dibaca semua (tolong di ke atas)',
+                                    style: TextStyle(
+                                        color: Colors.blueGrey, fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                            flex: 3,
                             child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               color: Colors.transparent,
-                              child: const Center(
-                                  child: Text('Rules [On Progress]')),
+                              child: const Center(child: RulesList()),
                             )),
                       ]),
                     ),
@@ -222,7 +247,7 @@ class _FormWidgetState extends State<FormWidget> {
                   const Expanded(
                       child: Text(
                     'Saya Siap Mengikuti Squadron Realistic Battle',
-                    style: TextStyle(fontSize: 11,color: Colors.white),
+                    style: TextStyle(fontSize: 11, color: Colors.white),
                   )),
                   const SizedBox(
                     width: 20,
@@ -245,8 +270,8 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
                   const Expanded(
                       child: Text(
-                    'Saya Sudah Membaca Rules',
-                    style: TextStyle(fontSize: 11,color: Colors.white),
+                    'Saya Sudah Membaca dan Setuju Peraturan yg tertulis',
+                    style: TextStyle(fontSize: 11, color: Colors.white),
                   )),
                   const SizedBox(
                     width: 20,
@@ -285,15 +310,16 @@ class _FormWidgetState extends State<FormWidget> {
                                 "Untuk Proses lebih lanjut bisa langsung join Discord server kami"),
                             actions: [
                               TextButton(
-                                  onPressed: (() {setState(() {
-                                    _isruleschecked = false;
-                                    _issbchecked = false;
-                                  });
+                                  onPressed: (() {
+                                    setState(() {
+                                      _isruleschecked = false;
+                                      _issbchecked = false;
+                                    });
                                     _namaController.clear();
                                     _negara.clear();
                                     _nickname.clear();
                                     _user.clear();
-                                    
+
                                     Navigator.of(context, rootNavigator: true)
                                         .pop();
                                   }),
@@ -343,5 +369,53 @@ class _FormWidgetState extends State<FormWidget> {
     };
 
     await docUser.set(json);
+  }
+}
+
+class RulesList extends StatefulWidget {
+  const RulesList({super.key});
+
+  @override
+  State<RulesList> createState() => _RulesListState();
+}
+
+class _RulesListState extends State<RulesList> {
+  final CollectionReference _rules =
+      FirebaseFirestore.instance.collection('Rules');
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: StreamBuilder(
+        stream: _rules.snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+          if (streamSnapshot.hasData) {
+            return ListView.builder(
+                itemCount: streamSnapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  final DocumentSnapshot documentSnapshot =
+                      streamSnapshot.data!.docs[index];
+
+                  return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: Colors.transparent,
+                      margin: const EdgeInsets.only(top: 6),
+                      child: ListTile(
+                        title: Text(
+                          documentSnapshot['rules'],
+                          style: const TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      ));
+                });
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
   }
 }

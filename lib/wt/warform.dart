@@ -93,9 +93,9 @@ class _WarFormState extends State<WarForm> {
                                         color: Colors.white, fontSize: 28),
                                   ),
                                   Text(
-                                    'Harap dibaca semua (tolong di ke atas)',
+                                    'Harap dibaca semua (tolong di scroll ke atas)',
                                     style: TextStyle(
-                                        color: Colors.blueGrey, fontSize: 10),
+                                        color: Colors.black, fontSize: 10),
                                   ),
                                 ],
                               ),

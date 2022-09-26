@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
 import 'package:game_web/wt/wtcardrule.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WarForm extends StatefulWidget {
   const WarForm({super.key});
@@ -221,7 +222,7 @@ class _FormWidgetState extends State<FormWidget> {
                   const Expanded(
                       child: Text(
                     'Saya Siap Mengikuti Squadron Realistic Battle',
-                    style: TextStyle(fontSize: 11),
+                    style: TextStyle(fontSize: 11,color: Colors.white),
                   )),
                   const SizedBox(
                     width: 20,
@@ -245,7 +246,7 @@ class _FormWidgetState extends State<FormWidget> {
                   const Expanded(
                       child: Text(
                     'Saya Sudah Membaca Rules',
-                    style: TextStyle(fontSize: 11),
+                    style: TextStyle(fontSize: 11,color: Colors.white),
                   )),
                   const SizedBox(
                     width: 20,
@@ -260,12 +261,12 @@ class _FormWidgetState extends State<FormWidget> {
                         borderRadius: BorderRadius.circular(20))),
                 onPressed: _isruleschecked && _issbchecked
                     ? () {
-                      //setState(() {
+                        //setState(() {
                         // _namaController.text.isEmpty ? _validate = true : _validate = false;
                         // _nickname.text.isEmpty ? _validate = true : _validate = false;
                         // _negara.text.isEmpty ? _validate = true : _validate = false;
                         // _namaController.text.isEmpty ? _validate = true : _validate = false;
-                      //});
+                        //});
                         final nama = _namaController.text;
                         final nick = _nickname.text;
                         final negara = _negara.text;
@@ -278,24 +279,41 @@ class _FormWidgetState extends State<FormWidget> {
                           builder: (BuildContext context) => AlertDialog(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25)),
-                            actionsPadding: const EdgeInsets.all(15),
+                            actionsPadding: const EdgeInsets.all(30),
                             title: const Text("Formulir Terkirim"),
                             content: const Text(
-                                "Mohon Tunggu dikontak oleh Admin atau bisa cek Discord Server kami"),
+                                "Untuk Proses lebih lanjut bisa langsung join Discord server kami"),
                             actions: [
                               TextButton(
-                                  onPressed: (() {
+                                  onPressed: (() {setState(() {
+                                    _isruleschecked = false;
+                                    _issbchecked = false;
+                                  });
                                     _namaController.clear();
                                     _negara.clear();
                                     _nickname.clear();
                                     _user.clear();
+                                    
                                     Navigator.of(context, rootNavigator: true)
                                         .pop();
                                   }),
                                   child: const Text("OK")),
-                              TextButton(
-                                  onPressed: (() {}),
-                                  child: const Text("DISCORD"))
+                              IconButton(
+                                // ignore: prefer_const_constructors
+                                icon: Icon(
+                                  Icons.discord,
+                                ),
+                                onPressed: (() async {
+                                  final Uri url = Uri.parse(
+                                      'https://discord.gg/8Vq6sBGQVH');
+
+                                  if (await canLaunchUrl(url)) {
+                                    await launchUrl(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                }),
+                              )
                             ],
                           ),
                         );

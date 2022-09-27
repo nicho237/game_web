@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
-import 'package:game_web/wt/wtcardrule.dart';
+import 'package:game_web/wt/wtcard.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WarForm extends StatefulWidget {
@@ -19,8 +21,7 @@ class _WarFormState extends State<WarForm> {
         Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LandingPage()));
+              Get.to(const LandingPage());
             },
             child: const Icon(Icons.home),
           ),
@@ -85,7 +86,8 @@ class _WarFormState extends State<WarForm> {
                             color: Colors.transparent,
                             child: Center(
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: const [
                                   Text(
                                     'Rules',
@@ -286,12 +288,6 @@ class _FormWidgetState extends State<FormWidget> {
                         borderRadius: BorderRadius.circular(20))),
                 onPressed: _isruleschecked && _issbchecked
                     ? () {
-                        //setState(() {
-                        // _namaController.text.isEmpty ? _validate = true : _validate = false;
-                        // _nickname.text.isEmpty ? _validate = true : _validate = false;
-                        // _negara.text.isEmpty ? _validate = true : _validate = false;
-                        // _namaController.text.isEmpty ? _validate = true : _validate = false;
-                        //});
                         final nama = _namaController.text;
                         final nick = _nickname.text;
                         final negara = _negara.text;
@@ -343,7 +339,6 @@ class _FormWidgetState extends State<FormWidget> {
                             ],
                           ),
                         );
-                        //if buttonenabled == true then pass a function otherwise pass "null"
                       }
                     : null,
                 child: const Text('Kirim')),
@@ -405,7 +400,8 @@ class _RulesListState extends State<RulesList> {
                       child: ListTile(
                         title: Text(
                           documentSnapshot['rules'],
-                          style: const TextStyle(color: Colors.white, fontSize: 12),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 12),
                         ),
                       ));
                 });

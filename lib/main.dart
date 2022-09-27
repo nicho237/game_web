@@ -5,6 +5,7 @@ import 'package:game_web/landingpage.dart';
 import 'package:game_web/wows/wowsform.dart';
 import 'package:game_web/wt/warform.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       routes: {
         '/WarThunderJoin': (context) => const WarForm(),
         '/WoWSJoin': (context) => const WowsForm()

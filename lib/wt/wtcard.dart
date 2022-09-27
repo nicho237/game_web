@@ -32,16 +32,12 @@ class _WarCardState extends State<WarCard> {
             backgroundImage: AssetImage("assets/images/Logo_tKRI.png"),
           ),
           ElevatedButton(
-            
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
               onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/WarThunderJoin',
-                );
+                Get.toNamed('/WarThunderJoin');
               },
               child: const Text('War Thunder')),
         ],
@@ -79,18 +75,16 @@ class _WarCardRuleState extends State<WarCardRule> {
                   color: Colors.transparent,
                   child: Text(
                     '[TKRI]',
-                    style: TextStyle(fontSize: 30,
-                      color: Colors.white),
+                    style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                 ),
-                
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         fixedSize: const Size(100, 25),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
                     onPressed: () {
-                     Get.to(const LandingPage());
+                      Get.to(const LandingPage());
                     },
                     child: const Text('Back')),
               ],
@@ -150,4 +144,3 @@ class _RulesListState extends State<RulesList> {
     );
   }
 }
-

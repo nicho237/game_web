@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_web/landingpage.dart';
+import 'package:game_web/wt/controller.dart';
 import 'package:game_web/wt/wtcard.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -142,6 +143,7 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
+  final formController = Get.put(FormController());
   final CollectionReference _formulir =
       FirebaseFirestore.instance.collection('Formulir');
   final TextEditingController _namaController = TextEditingController();
@@ -180,7 +182,7 @@ class _FormWidgetState extends State<FormWidget> {
               textCapitalization: TextCapitalization.words,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
-                label: const Text('Nama Panggilan'),
+                label: Obx(() => Text("${formController.formName}")),
                 labelStyle: const TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -190,9 +192,9 @@ class _FormWidgetState extends State<FormWidget> {
               textAlignVertical: TextAlignVertical.bottom,
             ),
             TextField(
-              controller: _nickname,
+              controller: _namaController,
               decoration: InputDecoration(
-                label: const Text('WT nickname'),
+                label: Obx(() => Text("${formController.formNick}")),
                 labelStyle: const TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -206,7 +208,7 @@ class _FormWidgetState extends State<FormWidget> {
               textCapitalization: TextCapitalization.words,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
-                label: const Text('Negara Utama'),
+                label: Obx(() => Text("${formController.formNegara}")),
                 labelStyle: const TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -215,20 +217,22 @@ class _FormWidgetState extends State<FormWidget> {
               style: const TextStyle(fontSize: 12, color: Colors.white),
               textAlignVertical: TextAlignVertical.bottom,
             ),
-            TextField(
-              controller: _user,
-              textCapitalization: TextCapitalization.words,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                label: const Text('Discord'),
-                hintText: 'Nicama#9958',
-                labelStyle: const TextStyle(color: Colors.white),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Obx(
+              () => TextField(
+                controller: _user,
+                textCapitalization: TextCapitalization.words,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  label: Text("${formController.formDiscord}"),
+                  hintText: 'Nicama#9958',
+                  labelStyle: const TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
+                style: const TextStyle(fontSize: 12, color: Colors.white),
+                textAlignVertical: TextAlignVertical.bottom,
               ),
-              style: const TextStyle(fontSize: 12, color: Colors.white),
-              textAlignVertical: TextAlignVertical.bottom,
             ),
             const SizedBox(
               height: 40,
@@ -364,54 +368,5 @@ class _FormWidgetState extends State<FormWidget> {
     };
 
     await docUser.set(json);
-  }
-}
-
-class RulesList extends StatefulWidget {
-  const RulesList({super.key});
-
-  @override
-  State<RulesList> createState() => _RulesListState();
-}
-
-class _RulesListState extends State<RulesList> {
-  final CollectionReference _rules =
-      FirebaseFirestore.instance.collection('Rules');
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: StreamBuilder(
-        stream: _rules.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-                itemCount: streamSnapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  final DocumentSnapshot documentSnapshot =
-                      streamSnapshot.data!.docs[index];
-
-                  return Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: Colors.transparent,
-                      margin: const EdgeInsets.only(top: 6),
-                      child: ListTile(
-                        title: Text(
-                          documentSnapshot['rules'],
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
-                        ),
-                      ));
-                });
-          }
-
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
-    );
   }
 }
